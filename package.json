@@ -1,0 +1,19 @@
+{
+  "name": "tictactoe",
+  "version": "1.0.0",
+  "main": "ticTacToe.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "directories": {
+    "test": "tests"
+  },
+  "description": "",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+  
+}
