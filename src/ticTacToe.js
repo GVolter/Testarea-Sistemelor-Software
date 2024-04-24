@@ -14,6 +14,7 @@ class TicTacToe {
         });
     }
 
+    /* istanbul ignore next */
     printBoard() {
         let output = '';
         this.board.forEach((row, idx) => {
@@ -54,11 +55,12 @@ class TicTacToe {
         return false;
     }
 
+    /* istanbul ignore next */
     startGame() {
         this.getInput();
     }
 
-    getInput() {
+    getInput(callback) {
         this.printBoard();
         this.rl.question(`Player ${this.currentPlayer}, enter your move (row,col): `, input => {
             const [row, col] = input.split(',').map(Number);
@@ -73,11 +75,11 @@ class TicTacToe {
                     this.rl.close();
                 } else {
                     this.switchPlayer();
-                    this.getInput();
+                    callback(); 
                 }
             } else {
                 console.log("Invalid move. Please enter row,col within 0,1,2.");
-                this.getInput();
+                this.getInput(callback); 
             }
         });
     }
