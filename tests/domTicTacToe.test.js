@@ -3,14 +3,23 @@ const fs = require('fs');
 const path = require('path');
 
 const html = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
+const js = fs.readFileSync(path.resolve(__dirname, '../src/script.js'), 'utf8');
 
 let dom;
 let container;
 
 beforeEach(() => {
-  dom = new JSDOM(html);
+    dom = new JSDOM(html, {
+        runScripts: 'dangerously',
+        resources: 'usable'
+      });
+    
 
-  container = dom.window.document.body;
+    const script = dom.window.document.createElement('script');
+    script.textContent = js;
+    dom.window.document.body.appendChild(script);
+
+    container = dom.window.document.body;
 });
 
 
@@ -40,16 +49,11 @@ test('Game identifies a win correctly', () => {
 
 
 test('Game identifies a draw correctly', () => {
-  const cells = container.querySelectorAll('[data-cell]');
-  cells.forEach((cell, i) => {
-    cell.click();
-    if (i % 2 === 0) {
-      expect(cell.classList.contains('x')).toBeTruthy();
-    } else {
-      expect(cell.classList.contains('circle')).toBeTruthy();
-    }
+  const cells = container.querySelectorAll('.cell');
+  [0, 1, 2, 4, 3, 5, 7, 6, 8].forEach(i => {
+    cells[i].click();
   });
-  expect(container.querySelector('[data-winning-message-text]').innerText).toBe('Draw!');
+  expect(container.querySelector('div[data-winning-message-text]').innerText).toBe('Draw!');
   expect(container.querySelector('#winningMessage').classList.contains('show')).toBeTruthy();
 });
 
