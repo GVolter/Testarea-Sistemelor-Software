@@ -5,7 +5,7 @@ const path = require('path');
 const html = fs.readFileSync(path.resolve(__dirname, '../src/index.html'), 'utf8');
 
 // Import the functions from the script
-const TicTacToe = require('../src/domTicTacToe');
+const TicTacToe = require('../src/domTicTacToe.js');
 
 let dom;
 let container;
@@ -45,6 +45,16 @@ test('Game identifies a win correctly', () => {
 
   expect(game.checkWin(game.X_CLASS)).toBeTruthy();
   expect(container.querySelector('div[data-winning-message-text]').innerText).toBe("X's Wins!");
+  expect(container.querySelector('#winningMessage').classList.contains('show')).toBeTruthy();
+});
+
+test('Game identifies O win correctly', () => {
+  const cells = container.querySelectorAll('.cell');
+  [0, 1, 2, 4, 3, 7].forEach(i => {
+    game.handleClick({ target: cells[i] });
+  });
+  expect(game.checkWin(game.CIRCLE_CLASS)).toBeTruthy();
+  expect(container.querySelector('div[data-winning-message-text]').innerText).toBe("O's Wins!");
   expect(container.querySelector('#winningMessage').classList.contains('show')).toBeTruthy();
 });
 
