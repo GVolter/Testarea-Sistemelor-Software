@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "main": "ticTacToe.js",
   "scripts": {
-    "test": "jest --coverage"
+    "coverage": "jest --coverage",
+    "mutation": "npx stryker run",
+    "test": "npm run coverage && npm run mutation",
+    "serve": "npx serve ./src/"
   },
   "keywords": [],
   "author": "",
