@@ -21,7 +21,8 @@
     "testEnvironment": "jsdom",
     "collectCoverage": true,
     "collectCoverageFrom": [
-      "src/**/*.js"
+      "src/domTicTacToe.js",
+      "src/ticTacToe.js"
     ],
     "setupFiles": [
       "<rootDir>/jest-shim.js"
