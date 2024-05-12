@@ -34,8 +34,17 @@ Pentru testele unitare si de integrare am ales folosirea frameworkului ``Jest`` 
 
 ## Comparatia cu AI
 
-Folosind varianta gratis a ChatGPT 3.0 am cerut prin intermediul urmatorului prompt a ni se genera o suita de teste unitare si de integrare.
+Folosind varianta gratis a ChatGPT 3.5 am cerut prin intermediul urmatorului prompt a ni se genera o suita de teste unitare si de integrare.
 
 ``` Salut, doresc sa imi generezi teste unitare si de integrare pentru acest cod ce reprezinta un joc de x si 0 in limbajul javascript: <cod aici>```
 
-Acesta a generat testele urmatoare:
+Rezultatul obtinut poate fi vizualizat [aici](https://imgur.com/a/2oy1PVE). Pe baza acestor imagini putem aduce cateva mentiuni:
+
+- Suita de teste este formata doar din 5 teste unitare scurte, fara teste de integrare;
+- In urma rularii testelor au esuat 5/5 teste, suita a fost un esec total;
+- Coverage-ul obtinut este de 16.98%, in comparatie cu coverage-ul de 100% obtinut in urma modificarilor făcute de noi specific pentru implementarea aplicatiei;
+- Codul este simplist, nu ia în considerare niciun fel de excepție, edge-caseuri; singura utilitate pe care am putea să o găsim este faptul că acest cod poate fi folosit ca un șablon la care se pot aduce îmbunătățiri de către dezvoltator.
+
+Chiar daca la prima vedere suita de teste pare ar fi una promitatoare pentru inceput, aceasta vine cu erori banale care necesita timp in plus pentru a fi rezolvate. Continuand pe aceasta linie suita de teste poate sa devina si mai problematica in testarea unor situatii mai specifice si ar fi predispusa la mutation.
+
+In concluzie, realizarii testarii prin intermediul tool-urilor de AI poate sa para varianta mai usoara, insa de cele mai multe ori o sa fie depasit de o aplicatie putin mai complexa si va fi doar o pierdere de timp. 
