@@ -24,11 +24,18 @@ beforeEach(() => {
 
 
 test('Game starts correctly', () => {
-  expect(container.querySelector('#board').children.length).toBe(9);
-  expect(container.querySelector('#winningMessage').classList.contains('show')).toBeFalsy();
-});
-
-
+	game.startGame(); 
+	const cells = container.querySelectorAll('[data-cell]');
+	cells.forEach(cell => {
+	  expect(cell.classList.contains(game.X_CLASS)).toBeFalsy();
+	  expect(cell.classList.contains(game.CIRCLE_CLASS)).toBeFalsy();
+	});
+	expect(container.querySelector('#board').classList.contains(game.X_CLASS)).toBeTruthy();
+	expect(container.querySelector('#board').classList.contains(game.CIRCLE_CLASS)).toBeFalsy();
+	expect(container.querySelector('#winningMessage').classList.contains('show')).toBeFalsy();
+	expect(cells.length).toBe(9);
+  });
+  
 test('Mark is placed correctly', () => {
   const cell = container.querySelector('.cell');
   game.handleClick({ target: cell });
@@ -173,3 +180,30 @@ test('O wins counter increments correctly in the DOM', () => {
   expect(oScoreText).toBe("O wins: 1");
   expect(game.oScore).toBe(1);
 });
+
+describe('Board Hover Class Tests', () => {
+    beforeEach(() => {
+        dom = new JSDOM(html, {
+            runScripts: 'dangerously',
+            resources: 'usable'
+        });
+        container = dom.window.document.body;
+        game = new TicTacToe(dom.window.document);
+        game.startGame(); 
+    });
+
+    test('setBoardHoverClass adds X class when it is X\'s turn', () => {
+        game.circleTurn = false; 
+        game.setBoardHoverClass();
+        expect(container.querySelector('#board').classList.contains(game.X_CLASS)).toBeTruthy();
+        expect(container.querySelector('#board').classList.contains(game.CIRCLE_CLASS)).toBeFalsy();
+    });
+
+    test('setBoardHoverClass adds Circle class when it is Circle\'s turn', () => {
+        game.circleTurn = true; 
+        game.setBoardHoverClass();
+        expect(container.querySelector('#board').classList.contains(game.CIRCLE_CLASS)).toBeTruthy();
+        expect(container.querySelector('#board').classList.contains(game.X_CLASS)).toBeFalsy();
+    });
+});
+
