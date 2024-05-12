@@ -32,6 +32,10 @@ Pentru testele unitare si de integrare am ales folosirea frameworkului ``Jest`` 
 
 ![demo](./media/demo.gif)
 
+## Prezentare PPT
+
+[Link canva](https://www.canva.com/design/DAGFCa5awGU/89vtjkPE8Y1inL3qfqUZyw/edit?utm_content=DAGFCa5awGU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton)
+
 ## Comparatia cu AI
 
 Folosind varianta gratis a ChatGPT 3.5 am cerut prin intermediul urmatorului prompt a ni se genera o suita de teste unitare si de integrare.
