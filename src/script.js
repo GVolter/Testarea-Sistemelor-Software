@@ -22,7 +22,7 @@ class TicTacToe {
       this.oScore = 0;
       this.drawScore = 0;
       this.scoreElement = document.getElementById('score');
-  
+      console.log(this.scoreElement.children[0].innerText)
       this.startGame();
     }
   

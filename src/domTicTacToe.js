@@ -18,7 +18,10 @@ class TicTacToe {
     this.restartButton = document.getElementById('restartButton');
     this.winningMessageTextElement = document.querySelector('[data-winning-message-text]');
     this.circleTurn = false;
-
+    this.xScore = 0;
+    this.oScore = 0;
+    this.drawScore = 0;
+    this.scoreElement = document.getElementById('score');
     this.startGame();
   }
 
@@ -27,7 +30,7 @@ class TicTacToe {
     this.cellElements.forEach(cell => {
       cell.classList.remove(this.X_CLASS);
       cell.classList.remove(this.CIRCLE_CLASS);
-      cell.removeEventListener('click', this.handleClick.bind(this));
+      cell.removeEventListener('click', this.handleClick);
       cell.addEventListener('click', this.handleClick.bind(this), { once: true });
     })
     this.setBoardHoverClass();
@@ -36,6 +39,10 @@ class TicTacToe {
 
   handleClick(e) {
     const cell = e.target;
+    /* istanbul ignore next */
+    if (cell.classList.contains(this.X_CLASS) || cell.classList.contains(this.CIRCLE_CLASS)) {
+      return;
+    }
     const currentClass = this.circleTurn ? this.CIRCLE_CLASS : this.X_CLASS;
     this.placeMark(cell, currentClass);
     if (this.checkWin(currentClass)) {
@@ -51,10 +58,24 @@ class TicTacToe {
   endGame(draw) {
     if (draw) {
       this.winningMessageTextElement.innerText = 'Draw!';
+      this.drawScore++;
     } else {
       this.winningMessageTextElement.innerText = `${this.circleTurn ? "O's" : "X's"} Wins!`;
+      if (this.circleTurn) {
+        this.oScore++;
+      } else {
+        this.xScore++;
+      }
     }
     this.winningMessageElement.classList.add('show');
+  }
+
+  updateScore() {
+      this.scoreElement.innerHTML = `
+          <p>X wins: ${this.xScore}</p>
+          <p>O wins: ${this.oScore}</p>
+          <p>Draws: ${this.drawScore}</p>
+      `;
   }
 
   isDraw() {
