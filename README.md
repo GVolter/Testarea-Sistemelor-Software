@@ -30,10 +30,12 @@ Pentru testele unitare si de integrare am ales folosirea frameworkului ``Jest`` 
 
 ## Video Demo
 
+![demo](./media/demo.gif)
+
 ## Comparatia cu AI
 
 Folosind varianta gratis a ChatGPT 3.0 am cerut prin intermediul urmatorului prompt a ni se genera o suita de teste unitare si de integrare.
 
 ``` Salut, doresc sa imi generezi teste unitare si de integrare pentru acest cod ce reprezinta un joc de x si 0 in limbajul javascript: <cod aici>```
 
-Agesta a generat testele
+Acesta a generat testele urmatoare:
